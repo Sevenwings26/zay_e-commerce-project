@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% endif %}
+<div class="row">
+    <div class="col-6 mx-auto">
+        <a class="text-decoration-none" target="_blank" href="{% url 'products' %}"><i>Product Table</i></a>
+        <h4>Upload product</h4>
+        <form action=" " method="POST">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            <input type="submit" value="upload">
+        </form>
+    </div>
+</div>
+
+{% endblock%}
