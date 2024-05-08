@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if products %}
+{% for product in products %}
+
+<h2 class="h5 text-center mt-3 mb-3">{{ product.product_name }}</h2>
+{% endfor %}
+{% endif %}
+
+{% comment %} <div class="row">
+    {% if product %}
+    {% for product in products %}
+    <div class="col-12 col-md-4 p-5 mt-3">
+        {% if product.product_img %}
+        <a href='{% url "product_details"  product.productId %}'>            
+            <img src='{{ product.product_img.url }} '
+            class="rounded-circle img-fluid border"></a>
+            {% endif %}
+        <h2 class="h5 text-center mt-3 mb-3">{{ product.product_name }}</h2>
+        <p class="h1">{{ product.description }}</p>
+        <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div> {% endcomment %}
+
+{% endblock %}
+
+
+
+

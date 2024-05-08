@@ -16,7 +16,6 @@
         <h4>Upload product</h4>
         <form action=" " method="POST">
             {% csrf_token %}
-            
             {{ form.as_p }}
             <input type="submit" value="upload">
         </form>

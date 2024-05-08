@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User 
 from django.utils import timezone
 
+
 # create models
 class Profile(models.Model):
     position = [
@@ -38,6 +39,7 @@ def __str__(self):
 class productCategory(models.Model):
     cat_name = models.CharField(max_length=100)
     
+    
 # product table 
 class productTable(models.Model):
     category = [
@@ -57,3 +59,19 @@ class productTable(models.Model):
     created_at = models.DateTimeField(default = timezone.now)
     # created_at = models.DateTimeField(auto_now_add=True)
     user_id = models.ForeignKey(User, null=False, blank=False , on_delete=models.CASCADE)
+    
+    
+class orderList(models.Model):
+    orderId = models.AutoField(primary_key=True)
+    userId = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
+    productId = models.ForeignKey(productTable, null=False, blank=False, on_delete=models.CASCADE)
+    productquantity = models.IntegerField()
+    orderingTime = models.DateTimeField(default = timezone.now)
+    
+    def __str__(self):
+        return self.price * self.quantity
+    
+    
+    
+    
+    

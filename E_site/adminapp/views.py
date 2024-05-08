@@ -95,8 +95,6 @@ def reset_password(request):
     return render(request, 'registration/resetpassword.html')
 
 
-
-
 """PRODUCT VIEW"""
 @login_required
 def product_upload(request):
@@ -127,6 +125,7 @@ def delete_product(request, productId):
     else:
         messages.success(request, "You must be logged in to delete a record...")
         return redirect('home')
+   
     
 # modify product 
 def modify_product(request, productId):
@@ -142,6 +141,11 @@ def modify_product(request, productId):
         context = {'form': form}
     return render(request, 'modify_product.html', context)
     
+    
+# view and order Product 
+def order_product(request, productId):
+    products = productTable.objects.get(productId=productId)
+    return render(request, 'admin/order_product.html', {'products': products})
 
 
 # Users view 
@@ -161,4 +165,3 @@ def user_individual(request):
 def index_page(request):
     products = productTable.objects.all()
     return render(request, 'index.html', {'products': products})
-
