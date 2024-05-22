@@ -61,7 +61,7 @@ class productTable(models.Model):
     user_id = models.ForeignKey(User, null=False, blank=False , on_delete=models.CASCADE)
     
     
-class orderList(models.Model):
+class cartItem(models.Model):
     orderId = models.AutoField(primary_key=True)
     userId = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     productId = models.ForeignKey(productTable, null=False, blank=False, on_delete=models.CASCADE)

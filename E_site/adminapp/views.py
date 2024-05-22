@@ -6,7 +6,7 @@ from . forms import signupForm, loginForm, Product_form
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import productTable
+from .models import productTable, cartItem
 from django.contrib.auth.models import User 
 
 
@@ -165,3 +165,17 @@ def user_individual(request):
 def index_page(request):
     products = productTable.objects.all()
     return render(request, 'index.html', {'products': products})
+
+
+def add_to_cart(request, product_id):
+    product = productTable.objects.get(product_id=product_id)
+    cart_item, created = cartItem.objects.get_or_create(product=product, user=request.user)
+    cart_item.quantity += 1
+    cart_item.save()
+    return redirect('view_cart')
+
+
+def view_cart(request):
+    cart_items = cartItem.objects.filter(user=request.user)
+    total_price = sum(item.product.price * item.quantity for item in cart_items)
+    return render(request, 'admin/cart.html', {'cart_items': cart_items, 'total_price': total_price})

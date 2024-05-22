@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+    <h1>Your Shopping Cart</h1>
+ 
+    <div class="product-list">
+ 
+    
+ 
+    {% for item in cart_items %}
+    <div class="product-item">
+        <p>{{ item.product.name }} ({{ item.quantity }})</p>
+        <p>Price: ${{ item.product.price }}</p>
+        <a href="">Remove</a>
+    </div>
+    {% empty %}
+    <p>No item in our cart.</p>
+    {% endfor %}
+ 
+    </div>
+ 
+    <p>Total Price: ${{ total_price }}</p>
+ 
+   <button><a href="">Continue Shopping</a></button> 
+ 
+{% endblock %}
